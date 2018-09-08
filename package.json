@@ -2,6 +2,7 @@
   "name": "redux-persist-webextension-storage",
   "version": "1.0.1",
   "description": "WebExtension Storage engine for redux-persist",
+  "keywords": ["redux", "redux-persist"],
   "main": "./dist/index.js",
   "repository": "https://github.com/ssorallen/redux-persist-webextension-storage",
   "author": "Ross Allen <rossgit@gmail.com>",
