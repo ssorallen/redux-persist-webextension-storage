@@ -1,6 +1,6 @@
 {
   "name": "redux-persist-webextension-storage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "WebExtension Storage engine for redux-persist",
   "keywords": ["redux", "redux-persist"],
   "main": "./dist/index.js",
