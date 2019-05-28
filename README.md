@@ -26,7 +26,7 @@ import syncStorageReducer from './syncStorageReducer';
 
 const localStorageConfig = {
   key: 'localStorage',
-  storage: syncStorage,
+  storage: localStorage,
 }
 
 const syncStorageConfig = {
