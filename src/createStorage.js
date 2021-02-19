@@ -10,7 +10,7 @@ export default function createStorage(type: 'local' | 'sync') {
             .then((value) => {
               resolve(value[key]);
             })
-            .catch((e) => reject(e));
+            .catch(reject);
         } else {
           chrome.storage[type].get(key, (value) => {
             if (chrome.runtime.lastError == null) {
@@ -30,7 +30,7 @@ export default function createStorage(type: 'local' | 'sync') {
           browser.storage[type]
             .remove(key)
             .then(resolve)
-            .catch((e) => reject(e));
+            .catch(reject);
         } else {
           chrome.storage[type].remove(key, () => {
             if (chrome.runtime.lastError == null) {
@@ -48,7 +48,7 @@ export default function createStorage(type: 'local' | 'sync') {
           browser.storage[type]
             .set({ [key]: value })
             .then(resolve)
-            .catch((e) => reject(e));
+            .catch(reject);
         } else {
           chrome.storage[type].set({ [key]: value }, () => {
             if (chrome.runtime.lastError == null) {
