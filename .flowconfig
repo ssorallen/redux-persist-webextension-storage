@@ -3,6 +3,7 @@
 [include]
 
 [libs]
+flow-typed/
 node_modules/flow-interfaces-chrome/interfaces/
 
 [options]

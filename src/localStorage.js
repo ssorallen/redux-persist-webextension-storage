@@ -1,5 +1,5 @@
 /* @flow */
 
-import createStorage from './createStorage';
+import createStorage, { type ReduxPersistStorage } from "./createStorage";
 
-export default createStorage('local');
+export default (createStorage("local"): ReduxPersistStorage);

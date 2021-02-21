@@ -1,17 +1,18 @@
 /* @flow */
 
-export default function createStorage(type: 'local' | 'sync') {
+export interface ReduxPersistStorage {
+  +getItem: (key: string) => Promise<mixed>;
+  +removeItem: (key: string) => Promise<void>;
+  +setItem: (key: string, value: mixed) => Promise<void>;
+}
+
+export default function createStorage(type: "local" | "sync"): ReduxPersistStorage {
   return {
     getItem(key: string) {
-      return new Promise((resolve, reject) => {
-        if (typeof browser !== 'undefined') {
-          browser.storage[type]
-            .get(key)
-            .then((value) => {
-              resolve(value[key]);
-            })
-            .catch(reject);
-        } else {
+      if (typeof browser !== "undefined") {
+        return browser.storage[type].get(key).then((value) => value[key]);
+      } else {
+        return new Promise((resolve, reject) => {
           chrome.storage[type].get(key, (value) => {
             if (chrome.runtime.lastError == null) {
               // Chrome Storage returns the value in an Object of with its original key. Unwrap the
@@ -21,44 +22,38 @@ export default function createStorage(type: 'local' | 'sync') {
               reject();
             }
           });
-        }
-      });
+        });
+      }
     },
     removeItem(key: string) {
-      return new Promise((resolve, reject) => {
-        if (typeof browser !== 'undefined') {
-          browser.storage[type]
-            .remove(key)
-            .then(resolve)
-            .catch(reject);
-        } else {
+      if (typeof browser !== "undefined") {
+        return browser.storage[type].remove(key);
+      } else {
+        return new Promise((resolve, reject) => {
           chrome.storage[type].remove(key, () => {
             if (chrome.runtime.lastError == null) {
               resolve();
             } else {
-              reject();
+              reject(chrome.runtime.lastError);
             }
           });
-        }
-      });
+        });
+      }
     },
     setItem(key: string, value: mixed) {
-      return new Promise((resolve, reject) => {
-        if (typeof browser !== 'undefined') {
-          browser.storage[type]
-            .set({ [key]: value })
-            .then(resolve)
-            .catch(reject);
-        } else {
+      if (typeof browser !== "undefined") {
+        return browser.storage[type].set({ [key]: value });
+      } else {
+        return new Promise((resolve, reject) => {
           chrome.storage[type].set({ [key]: value }, () => {
             if (chrome.runtime.lastError == null) {
               resolve();
             } else {
-              reject();
+              reject(chrome.runtime.lastError);
             }
           });
-        }
-      });
+        });
+      }
     },
   };
 }

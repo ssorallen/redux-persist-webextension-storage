@@ -2,7 +2,10 @@
   "name": "redux-persist-webextension-storage",
   "version": "1.0.2",
   "description": "WebExtension Storage engine for redux-persist",
-  "keywords": ["redux", "redux-persist"],
+  "keywords": [
+    "redux",
+    "redux-persist"
+  ],
   "main": "./dist/index.js",
   "repository": "https://github.com/ssorallen/redux-persist-webextension-storage",
   "author": "Ross Allen <rossgit@gmail.com>",
@@ -12,9 +15,9 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.74.0",
-    "flow-interfaces-chrome": "^0.4.0",
-    "prettify": "^0.1.7"
+    "flow-bin": "^0.145.0",
+    "flow-interfaces-chrome": "^0.6.0",
+    "prettier": "^2.2.1"
   },
   "scripts": {
     "build": "rm -rf dist && babel src -d dist",

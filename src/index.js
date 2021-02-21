@@ -1,6 +1,6 @@
 /* @flow */
 
-import localStorage from './localStorage';
-import syncStorage from './syncStorage';
+import localStorage from "./localStorage";
+import syncStorage from "./syncStorage";
 
 module.exports = { localStorage, syncStorage };
